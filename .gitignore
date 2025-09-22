@@ -1,0 +1,39 @@
+# Node.js
+node_modules/
+dist/
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+ENV/
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+# その他
+*.swp
+*.swo
+
+# Frontend build
+frontend/build/
+frontend/dist/
+
+# Backend build
+backend/static/
+backend/media/

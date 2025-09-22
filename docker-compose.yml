@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: oboero-backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_NAME=oboero
+      - DB_USER=oboero
+      - DB_PASSWORD=oboero
+      - DB_HOST=db
+      - DB_PORT=5432
+
+
+  db:
+    image: postgres:15
+    container_name: oboero-db
+    environment:
+      POSTGRES_DB: oboero
+      POSTGRES_USER: oboero
+      POSTGRES_PASSWORD: oboero
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: oboero-frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    command: npm run dev -- --host
+    
+volumes:
+  postgres_data:
