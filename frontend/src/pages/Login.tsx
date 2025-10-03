@@ -27,7 +27,7 @@ export default function Login() {
       });
       if (res.ok) {
         const data = await res.json();
-        login(data.access, form.username);
+        login(data.access, data.refresh, form.username);
         navigate("/");
       } else {
         setError("ログイン失敗");

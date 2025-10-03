@@ -1,4 +1,4 @@
-import { useAuth } from "../contexts/useAuth";
+import { useAuth } from "../../contexts/useAuth";
 import styles from "./Header.module.css";
 
 export default function Header() {

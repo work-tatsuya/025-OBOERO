@@ -1,0 +1,10 @@
+.DeckList {
+  display: flex;
+  width: 100%;
+
+  /* 均等配置 */
+  justify-content: space-between;
+
+  /* 高さを揃える */
+  align-items: stretch;
+}
