@@ -2,11 +2,13 @@ import { useState } from "react";
 import styles from "./Deck.module.css";
 import icon_delete from "../../../image/icon_delete.png";
 import icon_update from "../../../image/icon_update.png";
+import icon_folder from "../../../image/icon_folder.png";
 import { useAuth } from "../../contexts/useAuth";
 import { apiFetch } from "../../api/client";
 import { API_ENDPOINTS } from "../../api/endpoints";
 import DeckModal from "../common/DeckModal/DeckModal";
 import type { Deck } from "../../types/deck";
+import { useNavigate } from "react-router-dom";
 
 type DeckListProps = {
   deck: Deck;
@@ -19,6 +21,12 @@ export default function Deck({ deck, onDelete, onUpdate }: DeckListProps) {
   const [isEditOpen, setEditOpen] = useState(false);
   const openEditModal = () => setEditOpen(true);
   const closeEditModal = () => setEditOpen(false);
+  const navigate = useNavigate();
+
+  // デッキの中に入る
+  const navigateToCardList = async () => {
+    navigate(`/decks/${deck.id}/cards`);
+  };
 
   // デッキ編集
   const handleEditSubmit = async (values: { name: string; description?: string }) => {
@@ -93,6 +101,9 @@ export default function Deck({ deck, onDelete, onUpdate }: DeckListProps) {
 
       {/* ボタン群 */}
       <div className={styles.DeckRight}>
+        <button className={styles.button} onClick={navigateToCardList}>
+          <img src={icon_folder} alt="デッキの中に入る" />
+        </button>
         <button className={styles.button} onClick={openEditModal}>
           <img src={icon_update} alt="編集" />
         </button>

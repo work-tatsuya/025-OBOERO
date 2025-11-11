@@ -37,7 +37,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{ paddingTop: "64px" }}>
+    <div>
       <div className={styles.DeckList}>
         <DeckList
           decks={myDecks}
