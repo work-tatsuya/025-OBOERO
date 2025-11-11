@@ -10,3 +10,13 @@ class Deck(models.Model):
     
     def __str__(self):
         return self.name
+    
+class Card(models.Model):
+    deck = models.ForeignKey(Deck, on_delete=models.CASCADE, related_name="cards")
+    front = models.CharField(max_length=255)
+    back = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.front} -> {self.back[:20]}"
